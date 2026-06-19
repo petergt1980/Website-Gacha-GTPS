@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GTPS Gacha</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{min-height:100vh;color:#fff;background:#0a0a2e;background-size:cover;background-position:center;background-attachment:fixed}
+#L{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0c29,#302b63);z-index:100}
+.lb{background:rgba(20,20,50,.95);padding:30px;border-radius:20px;border:2px solid #0fc;width:380px;max-width:92%;text-align:center}
+.lb h1{color:#0fc;margin-bottom:10px}
+.lb input,.lb button,.lb select{width:100%;padding:11px;margin:5px 0;border-radius:8px;font-size:14px}
+.lb input,.lb select{background:#1a1a3e;border:1px solid #0fc;color:#fff}
+.lb button{background:#0fc;border:none;color:#000;font-weight:bold;cursor:pointer}
+.tabs{display:flex;gap:5px;margin-bottom:10px}
+.tabs button{background:#1a1a3e;color:#fff;border:1px solid #0fc;flex:1;cursor:pointer}
+.tabs button.act{background:#0fc;color:#000}
+#M{display:none;padding:15px}
+.tp{display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,40,.8);padding:12px;border-radius:12px;margin-bottom:15px;flex-wrap:wrap;gap:8px}
+.tp h1{color:#0fc;font-size:18px}
+.bl{display:flex;gap:8px;flex-wrap:wrap}
+.bl div{background:rgba(0,255,204,.1);padding:6px 10px;border-radius:8px;border:1px solid rgba(0,255,204,.3);font-size:13px}
+.bl span{color:#0fc;font-weight:bold}
+.nb{display:flex;gap:6px;margin-bottom:15px;flex-wrap:wrap}
+.nb button{padding:8px 12px;background:rgba(0,150,255,.2);border:1px solid #09f;color:#fff;border-radius:8px;cursor:pointer;font-size:13px}
+.nb button:hover{background:#09f}
+.bg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.bc{background:linear-gradient(135deg,rgba(40,0,80,.8),rgba(0,40,80,.8));padding:15px;border-radius:12px;cursor:pointer;border:2px solid transparent;transition:.3s;text-align:center}
+.bc:hover{border-color:#fc0;transform:translateY(-3px)}
+.bc h3{color:#fc0;margin:6px 0}.bc .pr{color:#0fc;font-weight:bold}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:12px;overflow-y:auto}
+.mo.on{display:flex}
+.mc{background:linear-gradient(135deg,#1a1a3e,#16213e);padding:20px;border-radius:15px;max-width:600px;width:100%;border:2px solid #0fc;position:relative;max-height:92vh;overflow-y:auto}
+.mc h2{color:#0fc;margin-bottom:12px}
+.xb{position:absolute;top:10px;right:12px;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+.sd{background:#0a0a2e;padding:20px;border-radius:10px;text-align:center;min-height:160px;display:flex;align-items:center;justify-content:center;margin:12px 0;border:2px dashed #0fc}
+.sr{font-size:60px;animation:pp .5s ease}
+@keyframes pp{0%{transform:scale(0) rotate(-180deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+.so{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:10px 0}
+.so button{padding:8px;background:#09f;border:none;border-radius:6px;color:#fff;font-weight:bold;cursor:pointer;font-size:12px}
+.so button.ac{background:#fc0;color:#000}
+.ht{background:#0a0a2e;padding:10px;border-radius:8px;max-height:120px;overflow-y:auto;margin-top:10px}
+.ht h4{color:#0fc;margin-bottom:6px}
+.hi{padding:3px;border-bottom:1px solid #333;display:flex;justify-content:space-between;font-size:12px}
+table{width:100%;border-collapse:collapse;margin:8px 0}
+th,td{padding:6px;border:1px solid rgba(0,255,204,.3);text-align:left;font-size:12px}
+th{background:rgba(0,255,204,.1);color:#0fc}
+table input,table select{width:100%;padding:4px;background:#0a0a2e;border:1px solid #09f;color:#fff;border-radius:4px;font-size:12px}
+.bp{padding:7px 14px;background:#0fc;border:none;border-radius:6px;cursor:pointer;font-weight:bold}
+.bd{padding:7px 14px;background:#f46;border:none;border-radius:6px;cursor:pointer;color:#fff;font-weight:bold}
+.bw{padding:7px 14px;background:#fc0;border:none;border-radius:6px;cursor:pointer;font-weight:bold;color:#000}
+.bb{padding:4px 8px;background:#09f;border:none;border-radius:4px;cursor:pointer;color:#fff;font-size:11px}
+.ts{position:fixed;bottom:20px;right:20px;background:#0fc;color:#000;padding:10px 18px;border-radius:8px;font-weight:bold;z-index:200}
+.ip{width:36px;height:36px;object-fit:contain;border-radius:5px}
+.mr{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.mr div{text-align:center}
+.inp{width:100%;padding:8px;background:#0a0a2e;border:1px solid #09f;color:#fff;border-radius:6px;margin:4px 0}
+.ulist{background:#0a0a2e;padding:8px;border-radius:8px;max-height:200px;overflow-y:auto;margin:8px 0}
+.uitem{padding:6px;border-bottom:1px solid #333;display:flex;justify-content:space-between;align-items:center;font-size:12px;flex-wrap:wrap;gap:5px}
+</style></head><body>
+<div id="L"><div class="lb">
+<h1>🌱 GTPS GACHA</h1>
+<div class="tabs"><button id="tL" class="act" onclick="swT('l')">Login</button><button id="tR" onclick="swT('r')">Register</button></div>
+<div id="fL">
+<select id="rs"><option value="member">👤 Member</option><option value="admin">🛡️ Admin</option></select>
+<input type="text" id="lU" placeholder="GrowID">
+<input type="password" id="lP" placeholder="Password">
+<button onclick="doL()">🔑 LOGIN</button>
+<p style="color:#555;font-size:11px;margin-top:5px">Admin default: admin / admin123</p>
+</div>
+<div id="fR" style="display:none">
+<input type="text" id="rU" placeholder="GrowID">
+<input type="password" id="rP" placeholder="Password">
+<input type="password" id="rP2" placeholder="Confirm Password">
+<button onclick="doR()">📝 REGISTER</button>
+</div>
+</div></div>
+
+<div id="M">
+<div class="tp"><div><h1>🌱 GTPS GACHA</h1><div style="color:#aaa;font-size:11px" id="uI"></div></div>
+<div class="bl"><div>💎 <span id="gb">0</span></div><div>🔒 <span id="wb">0</span></div></div></div>
+<div class="nb" id="nv"></div>
+<div class="bg" id="bl"></div>
+</div>
+
+<div class="mo" id="sm"><div class="mc">
+<button class="xb" onclick="cM('sm')">×</button>
+<h2 id="st">Gacha</h2>
+<div class="sd" id="sp"><div><div class="sr">❓</div><p style="color:#fc0;margin-top:8px">Click Spin!</p></div></div>
+<div style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="sa"><label for="sa">⚡ Skip Animasi</label></div>
+<p style="color:#fc0;font-size:12px">Jumlah Spin:</p>
+<div class="so">
+<button onclick="sC(1)" class="ac">1x</button><button onclick="sC(2)">2x</button><button onclick="sC(5)">5x</button>
+<button onclick="sC(10)">10x</button><button onclick="sC(20)">20x</button><button onclick="tA()" id="ab">🔄Auto</button>
+</div>
+<button class="bp" onclick="dS()" style="width:100%;padding:10px">🎰 SPIN</button>
+<div class="ht"><h4>📜 Riwayat</h4><div id="sh"></div></div>
+</div></div>
+
+<div class="mo" id="am"><div class="mc" style="max-width:900px">
+<button class="xb" onclick="cM('am')">×</button>
+<h2>⚙️ Admin Panel</h2>
+<div id="admStats" style="color:#aaa;font-size:12px;margin:8px 0"></div>
+<h3 style="color:#fc0;margin:12px 0 6px">💰 Add Balance ke GrowID</h3>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<select id="aU" class="inp" style="flex:2;min-width:120px"></select>
+<input type="number" id="aG" placeholder="Gems" class="inp" style="flex:1;min-width:80px">
+<input type="number" id="aW" placeholder="WL" class="inp" style="flex:1;min-width:80px">
+<button class="bp" onclick="aBal()">➕</button>
+</div>
+<h3 style="color:#fc0;margin:15px 0 6px">👥 Member</h3>
+<div class="ulist" id="uL"></div>
+<h3 style="color:#fc0;margin:12px 0 6px">💾 Database</h3>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0">
+<button class="bp" onclick="exD()">📥 Export</button>
+<button class="bw" onclick="document.getElementById('iF').click()">📤 Import</button>
+<input type="file" id="iF" accept=".json" style="display:none" onchange="imD(event)">
+<button class="bd" onclick="rsD()">🗑️ Reset Users</button>
+</div>
+<h3 style="color:#fc0;margin:15px 0 6px">📦 Items Hadiah</h3>
+<div style="overflow-x:auto"><table><thead><tr><th>Icon</th><th>Nama</th><th>Rarity</th><th>Drop%</th><th></th></tr></thead><tbody id="iT"></tbody></table></div>
+<div style="display:flex;gap:6px;margin-top:8px"><button class="bp" onclick="aI()">➕ Item</button><button class="bw" onclick="sI()">💾 Simpan</button></div>
+<h3 style="color:#fc0;margin:15px 0 6px">🎰 Banners</h3>
+<div style="overflow-x:auto"><table><thead><tr><th>Icon</th><th>Nama</th><th>Gems</th><th>WL</th><th></th></tr></thead><tbody id="bT"></tbody></table></div>
+<div style="display:flex;gap:6px;margin-top:8px"><button class="bp" onclick="aBn()">➕ Banner</button><button class="bw" onclick="sB()">💾 Simpan</button></div>
+</div></div>
+
+<div class="mo" id="im"><div class="mc" style="max-width:380px">
+<button class="xb" onclick="cM('im')">×</button>
+<h2>🖼️ Edit Icon</h2>
+<input type="text" id="ie" placeholder="Emoji: 🎁🏆👑" class="inp" style="font-size:18px;text-align:center">
+<p style="color:#aaa;font-size:11px;margin:6px 0">URL Gambar:</p>
+<input type="text" id="iu" placeholder="https://..." class="inp">
+<div id="ipv" style="text-align:center;margin:8px 0"></div>
+<div style="display:flex;gap:6px"><button class="bp" onclick="cI()">✅ Pakai</button><button class="bd" onclick="cM('im')">Batal</button></div>
+</div></div>
+
+<div class="mo" id="gm"><div class="mc" style="max-width:380px">
+<button class="xb" onclick="cM('gm')">×</button>
+<h2>🖼️ Background</h2>
+<input type="file" id="bf" accept="image/*" style="width:100%;padding:6px;margin:6px 0">
+<input type="text" id="bu" placeholder="URL gambar..." class="inp">
+<div style="display:flex;gap:6px"><button class="bp" onclick="sBg()">✅ Terapkan</button><button class="bd" onclick="rBg()">🔄 Reset</button></div>
+</div></div>
+
+<script>
+var API=window.location.origin,token=localStorage.getItem('gtps_token'),role=localStorage.getItem('gtps_role'),username=localStorage.getItem('gtps_username'),userId=null,banners=[],items=[],curBanner=null,spinCount=1,spinning=false,autoOn=false,autoTimer=null,iconTarget=null,iconIdx=null;
+function ts(m){var o=document.querySelector('.ts');if(o)o.remove();var t=document.createElement('div');t.className='ts';t.innerText=m;document.body.appendChild(t);setTimeout(function(){if(t.parentNode)t.remove()},2500)}
+function oM(id){document.getElementById(id).classList.add('on')}
+function cM(id){document.getElementById(id).classList.remove('on')}
+function rc(r){return{common:'#aaa',uncommon:'#4ade80',rare:'#3b82f6',epic:'#a855f7',legendary:'#fc0'}[r]||'#fff'}
+function isI(s){return s&&(s.indexOf('http')===0||s.indexOf('data:')===0)}
+function ri(ic,sz){if(isI(ic))return'<img src="'+ic+'" style="width:'+sz+'px;height:'+sz+'px;object-fit:contain;border-radius:8px">';return'<span style="font-size:'+sz+'px">'+ic+'</span>'}
+async function api(ep,opt){opt=opt||{};var h={'Content-Type':'application/json'};if(token)h['Authorization']='Bearer '+token;opt.headers=h;var r=await fetch(API+ep,opt);var d=await r.json();if(!r.ok)throw new Error(d.error||'API Error');return d}
+async function checkAuth(){if(!token)return;try{if(role==='member'){var u=await api('/api/me');userId=u.id;enterApp()}else if(role==='admin')enterApp()}catch(e){localStorage.removeItem('gtps_token');localStorage.removeItem('gtps_role');localStorage.removeItem('gtps_username')}}
+checkAuth();
+function swT(t){document.getElementById('tL').classList.toggle('act',t==='l');document.getElementById('tR').classList.toggle('act',t==='r');document.getElementById('fL').style.display=t==='l'?'block':'none';document.getElementById('fR').style.display=t==='r'?'block':'none'}
+async function doL(){var r=document.getElementById('rs').value,u=document.getElementById('lU').value.trim(),p=document.getElementById('lP').value;if(!u||!p)return ts('Isi semua!');try{var d=await api('/api/login',{method:'POST',body:JSON.stringify({username:u,password:p,role:r})});token=d.token;role=d.role;username=d.username;localStorage.setItem('gtps_token',token);localStorage.setItem('gtps_role',role);localStorage.setItem('gtps_username',username);if(role==='member'){var u2=await api('/api/me');userId=u2.id}enterApp();ts('Login OK! 🎉')}catch(e){ts(e.message)}}
+async function doR(){var u=document.getElementById('rU').value.trim(),p=document.getElementById('rP').value,p2=document.getElementById('rP2').value;if(!u||!p)return ts('Isi semua!');if(p!==p2)return ts('Password beda!');try{await api('/api/register',{method:'POST',body:JSON.stringify({username:u,password:p})});ts('Register OK! ✅');swT('l');document.getElementById('lU').value=u}catch(e){ts(e.message)}}
+async function enterApp(){document.getElementById('L').style.display='none';document.getElementById('M').style.display='block';document.getElementById('uI').innerText=(role==='admin'?'🛡️ Admin: ':'👤 ')+username;bN();await loadBanners();lBg()}
+function bN(){var n=document.getElementById('nv');n.innerHTML='';if(role==='admin')n.innerHTML+='<button onclick="oA()">⚙️ Admin</button>';n.innerHTML+='<button onclick="oM(\'gm\')">🖼️ BG</button><button onclick="doLo()">🚪 Logout</button>'}
+async function loadBanners(){try{banners=await api('/api/banners');rB();if(role==='member')await uB()}catch(e){ts('Gagal load banners')}}
+async function uB(){if(role==='admin'){document.getElementById('gb').innerText='∞';document.getElementById('wb').innerText='∞';return}try{var u=await api('/api/me');document.getElementById('gb').innerText=u.gems.toLocaleString();document.getElementById('wb').innerText=u.wl.toLocaleString()}catch(e){}}
+function rB(){var c=document.getElementById('bl');c.innerHTML='';banners.forEach(function(b){c.innerHTML+='<div class="bc" onclick="oB('+b.id+')"><div style="margin:8px 0">'+ri(b.icon,50)+'</div><h3>'+b.name+'</h3><div class="pr">💎 '+b.price_gems+' Gems</div><div style="color:#aaa;font-size:11px">🔒 '+b.price_wl+' WL</div></div>'})}
+function oB(id){curBanner=banners.find(function(b){return b.id===id});document.getElementById('st').innerText='🎰 '+curBanner.name;document.getElementById('sp').innerHTML='<div><div class="sr">❓</div><p style="color:#fc0;margin-top:8px">Click Spin!</p></div>';document.getElementById('sh').innerHTML='';sC(1);oM('sm')}
+function sC(n){spinCount=n;var bs=document.querySelectorAll('.so button');var ns=[1,2,5,10,20];for(var i=0;i<5;i++)if(bs[i])bs[i].classList.toggle('ac',ns[i]===n)}
+async function dS(){if(spinning||!curBanner)return;spinning=true;try{var d=await api('/api/spin',{method:'POST',body:JSON.stringify({bannerId:curBanner.id,count:spinCount})});var skip=document.getElementById('sa').checked;if(skip||spinCount>1)sMul(d.results);else sOne(d.results[0]);d.results.forEach(function(r){var div=document.createElement('div');div.className='hi';var cl=rc(r.rarity);div.innerHTML='<span style="color:'+cl+'">'+ri(r.icon,14)+' '+r.name+'</span><span style="color:'+cl+'">'+r.rarity+'</span>';document.getElementById('sh').prepend(div)});document.getElementById('gb').innerText=d.balance.gems.toLocaleString();document.getElementById('wb').innerText=d.balance.wl.toLocaleString()}catch(e){ts(e.message);sA()}spinning=false}
+function sOne(item){var a=document.getElementById('sp');a.innerHTML='<div><div class="sr" style="opacity:.5">🎲</div><p style="color:#aaa;margin-top:8px">Rolling...</p></div>';setTimeout(function(){var cl=rc(item.rarity);a.innerHTML='<div><div class="sr" style="color:'+cl+'">'+ri(item.icon,70)+'</div><p style="color:'+cl+';font-weight:bold;margin-top:8px">'+item.name+'</p><p style="color:'+cl+';font-size:13px">('+item.rarity.toUpperCase()+')</p></div>'},1200)}
+function sMul(res){var a=document.getElementById('sp'),h='<div class="mr">';res.forEach(function(r){var cl=rc(r.rarity);h+='<div><div style="color:'+cl+'">'+ri(r.icon,32)+'</div><div style="font-size:10px;font-weight:bold;color:'+cl+'">'+r.name+'</div></div>'});h+='</div>';a.innerHTML=h}
+function tA(){if(autoOn)sA();else{autoOn=true;document.getElementById('ab').innerText='⏹️Stop';document.getElementById('ab').style.background='#f46';autoTimer=setInterval(async function(){if(!spinning)await dS()},1500)}}
+function sA(){autoOn=false;clearInterval(autoTimer);var b=document.getElementById('ab');if(b){b.innerText='🔄Auto';b.style.background='#09f'}}
+function doLo(){sA();token=null;role=null;username=null;userId=null;localStorage.removeItem('gtps_token');localStorage.removeItem('gtps_role');localStorage.removeItem('gtps_username');document.getElementById('M').style.display='none';document.getElementById('L').style.display='flex';document.getElementById('lU').value='';document.getElementById('lP').value=''}
+async function oA(){if(role!=='admin')return ts('Admin only!');try{var stats=await api('/api/admin/stats');var users=await api('/api/admin/users');items=await api('/api/admin/items');banners=await api('/api/admin/banners');document.getElementById('admStats').innerText='📊 Users: '+stats.userCount+' | Items: '+stats.itemCount+' | Banners: '+stats.bannerCount+' | Spins: '+stats.invCount;rUL(users);rIT();rBT();oM('am')}catch(e){ts(e.message)}}
+function rUL(users){var sel=document.getElementById('aU');sel.innerHTML='';users.forEach(function(u){sel.innerHTML+='<option value="'+u.id+'">'+u.growid+' (💎'+u.gems+'/🔒'+u.wl+')</option>'});if(!users.length)sel.innerHTML='<option>Belum ada</option>';var list=document.getElementById('uL');list.innerHTML='';if(!users.length){list.innerHTML='<p style="color:#aaa;text-align:center;padding:8px">Belum ada member</p>';return}users.forEach(function(u){var d=document.createElement('div');d.className='uitem';d.innerHTML='<div>👤<b>'+u.growid+'</b> <span style="color:#0fc">💎'+u.gems.toLocaleString()+' | 🔒'+u.wl+'</span> <span style="color:#aaa;font-size:10px">('+u.inv_count+' items)</span></div><div><button class="bb" onclick="rsU('+u.id+')">🔄</button> <button class="bd" onclick="dlU('+u.id+')">🗑️</button></div>';list.appendChild(d)})}
+async function aBal(){var uid=document.getElementById('aU').value,g=parseInt(document.getElementById('aG').value)||0,w=parseInt(document.getElementById('aW').value)||0;try{await api('/api/admin/add-balance',{method:'POST',body:JSON.stringify({userId:parseInt(uid),gems:g,wl:w})});ts('+'+g+'💎 +'+w+'🔒');document.getElementById('aG').value='';document.getElementById('aW').value='';var users=await api('/api/admin/users');rUL(users)}catch(e){ts(e.message)}}
+async function rsU(uid){if(!confirm('Reset user ini?'))return;try{await api('/api/admin/reset-user',{method:'POST',body:JSON.stringify({userId:uid})});ts('Reset OK!');var users=await api('/api/admin/users');rUL(users)}catch(e){ts(e.message)}}
+async function dlU(uid){if(!confirm('Hapus user ini?'))return;try{await api('/api/admin/delete-user',{method:'POST',body:JSON.stringify({userId:uid})});ts('Dihapus!');var users=await api('/api/admin/users');rUL(users)}catch(e){ts(e.message)}}
+async function exD(){try{var data=await api('/api/admin/export');var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gtps_db_'+Date.now()+'.json';a.click();ts('Exported! 📥')}catch(e){ts(e.message)}}
+async function imD(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();rd.onload=async function(ev){try{var data=JSON.parse(ev.target.result);await api('/api/admin/import',{method:'POST',body:JSON.stringify({data:data})});ts('Imported! ✅');await oA()}catch(err){ts('Import failed: '+err.message)}};rd.readAsText(f)}
+async function rsD(){if(!confirm('RESET SEMUA USERS & INVENTORY?'))return;if(!confirm('Yakin?'))return;try{await api('/api/admin/reset',{method:'POST'});ts('Reset! 🗑️');await oA()}catch(e){ts(e.message)}}
+function rIT(){var tb=document.getElementById('iT');tb.innerHTML='';items.forEach(function(it,i){var ic=isI(it.icon)?'<img src="'+it.icon+'" class="ip">':'<span style="font-size:20px">'+it.icon+'</span>';tb.innerHTML+='<tr><td><div style="display:flex;align-items:center;gap:4px">'+ic+'<button class="bb" onclick="oIc(\'item\','+i+')">📷</button></div></td><td><input type="text" value="'+it.name+'" onchange="items['+i+'].name=this.value"></td><td><select onchange="items['+i+'].rarity=this.value"><option value="common"'+(it.rarity==='common'?' selected':'')+'>Common</option><option value="uncommon"'+(it.rarity==='uncommon'?' selected':'')+'>Uncommon</option><option value="rare"'+(it.rarity==='rare'?' selected':'')+'>Rare</option><option value="epic"'+(it.rarity==='epic'?' selected':'')+'>Epic</option><option value="legendary"'+(it.rarity==='legendary'?' selected':'')+'>Legendary</option></select></td><td><input type="number" value="'+it.drop_rate+'" onchange="items['+i+'].drop_rate=parseFloat(this.value)" step="0.1"></td><td><button class="bd" onclick="items.splice('+i+',1);rIT()">🗑️</button></td></tr>'})}
+function aI(){items.push({id:Date.now(),name:'New Item',icon:'🎁',rarity:'common',drop_rate:1});rIT()}
+async function sI(){try{await api('/api/admin/items/save',{method:'POST',body:JSON.stringify({items:items})});ts('Items Saved! ✅');await loadBanners()}catch(e){ts(e.message)}}
+function rBT(){var tb=document.getElementById('bT');tb.innerHTML='';banners.forEach(function(b,i){var ic=isI(b.icon)?'<img src="'+b.icon+'" class="ip">':'<span style="font-size:20px">'+b.icon+'</span>';tb.innerHTML+='<tr><td><div style="display:flex;align-items:center;gap:4px">'+ic+'<button class="bb" onclick="oIc(\'banner\','+i+')">📷</button></div></td><td><input type="text" value="'+b.name+'" onchange="banners['+i+'].name=this.value"></td><td><input type="number" value="'+b.price_gems+'" onchange="banners['+i+'].price_gems=parseInt(this.value)"></td><td><input type="number" value="'+b.price_wl+'" onchange="banners['+i+'].price_wl=parseInt(this.value)"></td><td><button class="bd" onclick="banners.splice('+i+',1);rBT()">🗑️</button></td></tr>'})}
+function aBn(){banners.push({id:Date.now(),name:'New Banner',icon:'🎰',price_gems:100,price_wl:1});rBT()}
+async function sB(){try{await api('/api/admin/banners/save',{method:'POST',body:JSON.stringify({banners:banners})});ts('Banners Saved! ✅');await loadBanners()}catch(e){ts(e.message)}}
+function oIc(type,idx){iconTarget=type;iconIdx=idx;var cur=type==='item'?items[idx].icon:banners[idx].icon;document.getElementById('ie').value=isI(cur)?'':cur;document.getElementById('iu').value=isI(cur)?cur:'';document.getElementById('ipv').innerHTML=isI(cur)?'<img src="'+cur+'" style="max-width:80px;max-height:80px;border-radius:8px">':'';oM('im')}
+document.getElementById('iu').addEventListener('input',function(){var u=this.value;if(u){document.getElementById('ipv').innerHTML='<img src="'+u+'" style="max-width:80px;max-height:80px;border-radius:8px" onerror="this.style.display=\'none\'">';document.getElementById('ie').value=''}});
+function cI(){var u=document.getElementById('iu').value,e=document.getElementById('ie').value,f=u||e||'🎁';if(iconTarget==='item')items[iconIdx].icon=f;else banners[iconIdx].icon=f;if(iconTarget==='item')rIT();else rBT();cM('im');ts('Icon OK! ✅')}
+function sBg(){var f=document.getElementById('bf').files[0],u=document.getElementById('bu').value;if(f){var rd=new FileReader();rd.onload=function(e){document.body.style.backgroundImage='url('+e.target.result+')';try{localStorage.setItem('gxBg',e.target.result)}catch(x){}ts('BG OK! ✅');cM('gm')};rd.readAsDataURL(f)}else if(u){document.body.style.backgroundImage='url('+u+')';try{localStorage.setItem('gxBg',u)}catch(x){}ts('BG OK! ✅');cM('gm')}else ts('Pilih file/URL!')}
+function rBg(){document.body.style.backgroundImage='';localStorage.removeItem('gxBg');ts('BG Reset! 🔄');cM('gm')}
+function lBg(){var b=localStorage.getItem('gxBg');if(b)document.body.style.backgroundImage='url('+b+')'}
+document.getElementById('lU').addEventListener('keypress',function(e){if(e.key==='Enter')doL()});
+document.getElementById('lP').addEventListener('keypress',function(e){if(e.key==='Enter')doL()});
+</script>
+</body></html>
